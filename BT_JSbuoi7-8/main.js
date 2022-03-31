@@ -119,7 +119,31 @@ document.getElementById("btnSapXep").onclick = function () {
     }
   }
   document.getElementById("btnThongBao_2").innerHTML =
-    "Số Chẵn Cuối Cùng : " + numberList;
+    "Các Số Theo Thứ Tự Tăng Dần : " + numberList;
+};
+
+//Bài Tập 8
+document.getElementById("btnSoNguyenToDau").onclick = function () {
+  var soNguyenToDau = -1;
+  for (var i = 0; i < numberList.length; i++) {
+    soNguyenToDau = ktSoNguyenTo(numberList[i]);
+    if (soNguyenToDau !== -1) {
+      break;
+    }
+  }
+  function ktSoNguyenTo(number) {
+    if (number < 2) {
+      return -1;
+    }
+    for (var i = 2; i < number; i++) {
+      if (number % i == 0) {
+        return -1;
+      }
+    }
+    return number;
+  }
+  document.getElementById("btnThongBao_2").innerHTML =
+    "Số Nguyên Tố Đầu Tiên là : " + soNguyenToDau;
 };
 
 // Bài Tập 9
@@ -134,4 +158,29 @@ document.getElementById("btnSoNguyen").onclick = function () {
   }
   document.getElementById("btnThongBao_2").innerHTML =
     "Có : " + demSoNguyen + " " + "Số Nguyên";
+};
+
+// Bài Tập 10
+
+document.getElementById("btnSoSanh").onclick = function () {
+  var soDuong = "";
+  var soAm = "";
+  var ketQua;
+
+  for (var i = 0; i < numberList.length; i++) {
+    if (numberList[i] > 0) {
+      soDuong += 1;
+    } else if (numberList[i] < 0) {
+      soAm += 1;
+    }
+    if (soDuong > soAm) {
+      ketQua = "Số lượng số dương nhiều hơn";
+    } else if (soAm > soDuong) {
+      ketQua = "Số lượng số Âm nhiều hơn";
+    } else {
+      ketQua = "Số lượng số Âm và Dương Bằng Nhau";
+    }
+  }
+
+  document.getElementById("btnThongBao_2").innerHTML = ketQua;
 };
